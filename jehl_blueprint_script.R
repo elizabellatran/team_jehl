@@ -1,3 +1,13 @@
+########################
+# Blueprint Hackathon:  Team jehl 
+# Elizabeth Tran
+# Jessica Hinman 
+# Hoda S. Abdel Magid
+# Lori Ling
+#
+# 4/13/19
+###########################
+
 ######
 #Libs #
 ######
