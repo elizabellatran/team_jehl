@@ -1,7 +1,6 @@
-# BluePrint Datathon: Team_jehl
+#Association of Peer Crowd Affiliation and Sexually Transmitted Disease Rates in the United States<br>
 
-
-Association of Peer Crowd Affiliation and Sexually Transmitted Disease Rates in the United States<br>
+Team JEHL<br>
 
 Elizabeth Tran, MS Candidate1 <br>
 Jessica Hinman, PhD Candidate, MS2 <br>
