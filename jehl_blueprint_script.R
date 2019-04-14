@@ -94,8 +94,55 @@ library(dplyr)
 df_PCA_screen = cbind(new_df_PCA, org_df[,69:79])
 str(df_PCA_screen)
 
-#plotting trends of screening over years -- grouping by age 
-df_PCA_screen %>% group_by(age, gender, state, income, education)  %>% na.omit()%>% summarise(avg=mean(std_screen)) %>% 
-  ggplot( aes(x = date, y = std_screen, group= interaction(age, state), color=age))+
+#plotting trends of screening over years -- grouping by age
+
+#getting averages of std screen
+screen_avg = df_PCA_screen %>% group_by(date, age, gender, state, income, education)%>%
+  na.omit()%>% summarise(avg=mean(std_screen))
+
+df_PCA_screen %>% group_by(age, gender, state,date, income, education)%>%
+  na.omit()%>% summarise(avg=mean(std_screen)) %>% 
+  ggplot(aes(x = date, y = avg, group= age, color=age))+
   geom_point(size = 2) + ggtitle("STD Screening Over Time")
 
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = chlamydia, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Chlamydia Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = chlamydia, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Chlamydia Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = gential_warts, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Gential Warts Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = gonorrhea, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Gonorrhea Warts Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = herpes, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Herpes Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = hpv, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("HPV Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = other_std, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Other Std Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = parasitic, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Parasitic Screening Over Time")
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = syphilis, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Syphilis Screening Over Time")
+
+
+df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
+  na.omit() %>% ggplot( aes(x = date, y = trich, group= age, color=age))+
+  geom_point(size = 2) + ggtitle("Trich Screening Over Time")
