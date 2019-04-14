@@ -12,5 +12,7 @@ Department of Genetics <br>
 Stanford University<br>
 
 
-April 12th - 14th 2019
-https://blueprint-datathon.weebly.com/the-case.html 
+BluePrint Datathon <Br>
+Big Data + Health <br>
+April 12th - 14th 2019<Br>
+https://blueprint-datathon.weebly.com/<Br>
