@@ -85,5 +85,17 @@ pca_rotation = as.data.frame(pca_rotation)
 
 
 #################################################
-###                  Log Model 
+###                  Trend Model
 #################################################
+
+library(tidyr)
+library(dplyr)
+
+df_PCA_screen = cbind(new_df_PCA, org_df[,69:79])
+str(df_PCA_screen)
+
+#plotting trends of screening over years -- grouping by age 
+df_PCA_screen %>% group_by(age, gender, state, income, education)  %>% na.omit()%>% summarise(avg=mean(std_screen)) %>% 
+  ggplot( aes(x = date, y = std_screen, group= interaction(age, state), color=age))+
+  geom_point(size = 2) + ggtitle("STD Screening Over Time")
+
