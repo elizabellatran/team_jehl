@@ -1,4 +1,4 @@
-<title>Association of Peer Crowd Affiliation and Sexually Transmitted Disease Rates in the United States </title>
+Association of Peer Crowd Affiliation and Sexually Transmitted Disease Rates in the United States 
 
 Team JEHL<br>
 
