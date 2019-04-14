@@ -16,6 +16,7 @@ library(tidyverse)
 library(reshape2)
 library(dplyr)
 library(ggplot2)
+library(ggfortify)
 
 #########
 # set WD # 
@@ -25,9 +26,64 @@ setwd('/Users/elizabella/Projects/BlueprintHack/')
 #######
 # Data #
 ####### 
-
 org_df = read_csv('stanford_blueprint_datathon_2019_data.csv')
-var_interest= ('BRFSS Variables of Interest.xlsx')
+#var_interest= ('BRFSS Variables of Interest.xlsx')
 
 ########
+# Theme #
+theme<-theme(panel.background = element_blank(),panel.border=element_rect(fill=NA),
+             panel.grid.major = element_blank(),panel.grid.minor = element_blank(),
+             strip.background=element_blank(),axis.text.x=element_text(colour="black"),
+             axis.text.y=element_text(colour="black"),
+             axis.ticks=element_line(colour="black"), 
+             plot.margin=unit(c(1,1,1,1),"line"))
+########
+# PCA  # 
+# 1-68 #
+#######
 
+df_PCA =  org_df[, 1:68]
+
+#making all strings into numeric & as a new df 
+for(i in colnames(df_PCA)){
+  j<- as.factor(df_PCA[[i]]) %>% as.numeric()
+  #reassign vector into df 
+  df_PCA[[i]]= j
+}
+
+new_df_PCA=df_PCA
+
+#PCA 
+pca_exposure = prcomp(na.omit(new_df_PCA), scale. =TRUE , center= TRUE)
+
+#screen plot
+screeplot(pca_exposure)
+plot(pca_exposure, main = "PCA Components in Predictor Space")
+plot(pca_exposure, main = "PCA Components in Predictor Space", type = "l")
+
+#PCA plots 
+autoplot(pca_exposure, x=1, y=2) + ggtitle("PCA Exposure 1v2")
+ggsave("pca_exposure_1v2.pdf")
+autoplot(pca_exposure, x=1, y=3 ) + ggtitle("PCA Exposure 1v3")
+ggsave("pca_exposure_1v3.pdf")
+autoplot(pca_exposure, x=2, y=3 ) + ggtitle("PCA Exposure 2v3")
+ggsave("pca_exposure_2v3.pdf")
+autoplot(pca_exposure, x=2, y=4)+ + ggtitle("PCA Exposure 2v4")
+ggsave("pca_exposure_2v4.pdf")
+
+
+######summary of PCA variables##### 
+summary(pca_exposure)
+
+#getting eigenvalue
+ev= pca_exposure$sdev^2
+#write(ev, 'eigen_values.csv')
+
+#looking at variables 
+pca_rotation = pca_exposure$rotation
+pca_rotation = as.data.frame(pca_rotation)
+
+
+#################################################
+###                  Log Model 
+#################################################
