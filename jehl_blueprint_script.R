@@ -105,11 +105,6 @@ df_PCA_screen %>% group_by(age, gender, state,date, income, education)%>%
   ggplot(aes(x = date, y = avg, group= age, color=age))+
   geom_point(size = 2) + ggtitle("STD Screening Over Time")
 
-
-df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
-  na.omit() %>% ggplot( aes(x = date, y = chlamydia, group= age, color=age))+
-  geom_point(size = 2) + ggtitle("Chlamydia Screening Over Time")
-
 df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
   na.omit() %>% ggplot( aes(x = date, y = chlamydia, group= age, color=age))+
   geom_point(size = 2) + ggtitle("Chlamydia Screening Over Time")
@@ -141,7 +136,6 @@ df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
 df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
   na.omit() %>% ggplot( aes(x = date, y = syphilis, group= age, color=age))+
   geom_point(size = 2) + ggtitle("Syphilis Screening Over Time")
-
 
 df_PCA_screen %>% group_by(age, gender, state, income, education)%>%
   na.omit() %>% ggplot( aes(x = date, y = trich, group= age, color=age))+
