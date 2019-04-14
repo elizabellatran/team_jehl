@@ -42,21 +42,22 @@ theme<-theme(panel.background = element_blank(),panel.border=element_rect(fill=N
 # 1-68 #
 #######
 
-DF_exp =  org_df[, 1:68]
+DF_exp = org_df[, 1:68]
 
 # In order to run PCA, need to convert all strings into numeric
 colnames(DF_exp)
 str(DF_exp)
 for (i in colnames(DF_exp)) {
   print(i)
-  if (is.character(DF_exp[[i]]) == TRUE) {
-    j <- as.factor(DF_exp[[i]]) %>% as.numeric()
+  if (is.factor(DF_exp[[i]]) == TRUE) {
+    j <- DF_exp[[i]] %>% as.numeric
     #print(j)
     DF_exp[[i]] <- j 
   }
 }
 
-new_df_PCA=df_exp
+
+new_df_PCA=DF_exp
 
 #PCA 
 pca_exposure = prcomp(na.omit(new_df_PCA), scale. =TRUE , center= TRUE)
@@ -91,7 +92,7 @@ pca_rotation = as.data.frame(pca_rotation)
 
 ###########################################################
 #Merge PCs 1-12 into original dataset to use in analyses
-STI_long <- cbind(org_df, pca_exposure$x[,1:12])
+STI <- cbind(org_df, pca_exposure$x[,1:12])
 
 #Create ID variable for transformation and analyses. Takes a long time to run, did not optimize. Run at your own risk.
 #for (row in 1:nrow(STI_long)) {
@@ -111,9 +112,6 @@ STI_long <- cbind(org_df, pca_exposure$x[,1:12])
 #  if(row %% 10000 == 0) {print(paste(row,"- ID is:",ID))}
 #  STI_long$ID[row] = ID
 #}
-
-#Save IDs to save time on future runs
-write.csv(STI_long$ID, file = "IDs.csv")
 
 #Transform data from long form to wide form for longitudinal analyses
 #STI <- reshape(STI_long, idvar = 'ID', timevar = 'date', direction = 'wide', drop = c())
